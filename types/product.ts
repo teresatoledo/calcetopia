@@ -1,40 +1,25 @@
 export type ProductType = {
   id: number,
-  attributes: {
-    productName: string,
+  productName: string,
+  slug: string,
+  description: string,
+  active: boolean,
+  isFeatured: boolean,
+  price: number,
+  offer: boolean,
+  soldOut: boolean,
+  image1: string,
+  image2: string,
+  categoryId: number,
+  category: {
     slug: string,
-    description: string,
-    active: boolean,
-    isFeatured: boolean,
-    price: number,
-    offer: boolean,
-    soldOut: boolean,
-    images: {
-      data: {
-        id: number,
-        attributes: {
-          url: string
-        }
-      }[]
-    },
-    category: {
-      data: {
-        attributes: {
-          slug: string,
-          categoryName: string,
-        }
-      }
-    }
-    sizes: {
-      data: {
-        find(arg0: (size: { attributes: { slug: string } }) => boolean): unknown
-        attributes: {
-          slug: string,
-          size: string,
-        }
-      }
-    }
-  }
+    categoryName: string,
+  },
+  sizes: {
+    find(arg0: (size: { slug: string }) => boolean): unknown,
+    slug: string,
+    sizeName: string
+  }[]
 }
 
 export type ProductWithSizeType = ProductType & {
