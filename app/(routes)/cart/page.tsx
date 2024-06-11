@@ -5,7 +5,6 @@ import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/formatPrice';
 import CartItem from './components/CartItem';
 import { loadStripe } from '@stripe/stripe-js';
-import { makePaymentRequest } from '@/pages/api/payment';
 import { useState } from 'react';
 import { formatOfferPrice } from '@/lib/offerPrice';
 
@@ -27,7 +26,7 @@ export default function Page() {
         if (totalPrice > 50 && discountCode === 'DESCUENTO10') {
             setDiscountApplied(true);
             setDiscountMessage('Código de descuento aplicado correctamente');
-            setDiscountStyle('');
+            setDiscountStyle('text-center');
         } else {
             setDiscountApplied(false);
             setDiscountMessage(
@@ -38,21 +37,42 @@ export default function Page() {
     };
 
     const discountedPrice = discountApplied ? totalPrice * 0.9 : totalPrice;
-    const stripePromise = loadStripe(
-        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''
-    );
+    const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
     const buyStripe = async () => {
+        removeAll()
         try {
             const stripe = await stripePromise;
-            const res = await makePaymentRequest.post('/api/orders', {
-                products: items,
-                discountCode,
+
+            if (!stripe) throw new Error('Stripe failed to initialize.');
+
+            const checkoutResponse = await fetch('/api/checkout_sessions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cartDetails: items, discountCode }),
             });
-            await stripe?.redirectToCheckout({
-                sessionId: res.data.stripeSession.id,
-            });
-            removeAll();
+
+            if (!checkoutResponse.ok) {
+                throw new Error('Error creating checkout session');
+            }
+
+            const { sessionId } = await checkoutResponse.json();
+
+            if (!sessionId) {
+                throw new Error('Missing sessionId in response');
+            }
+
+            const { error } = await stripe.redirectToCheckout({ sessionId });
+
+            if (error) {
+                console.error(error);
+            } else {
+                removeAll();
+            }
+
+            
         } catch (error) {
             console.log(error);
         }

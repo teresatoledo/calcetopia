@@ -24,7 +24,7 @@ function OfferCard(props: ProductCardProps) {
     const images = [product.image1, product.image2].filter(Boolean)
 
     return (
-        <div className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[200px]"> {/* Aquí establecemos el ancho máximo */}
+        <div className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px]">
             <Carousel
                 opts={{
                     align: 'start',
@@ -41,8 +41,8 @@ function OfferCard(props: ProductCardProps) {
                                 src={image}
                                 alt="Image"
                                 className="rounded-xl"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                             />
                             <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                 <div className="flex justify-center gap-x-4">

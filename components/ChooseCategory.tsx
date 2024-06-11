@@ -27,8 +27,8 @@ function ChooseCategory() {
                             src={`${category.mainImage}`}
                             alt={category.categoryName}
                             className="max-w-[270px] transition duration-300 ease-in-out rounded-lg hover:scale-110"
-                            width={200}
-                            height={200}
+                            width={300}
+                            height={300}
                         />
                         <p className="absolute w-full py-2 text-lg font-bold text-center text-white bottom-5 backdrop-blur-md">
                             {category.categoryName}

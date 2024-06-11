@@ -28,7 +28,8 @@ function ProductInfo(props: InfoProductProps) {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const sizes: SizeType[] = product.sizes;
-
+    const size36to40 = sizes.some(size => size.sizeName === 'Talla 36-40');
+    const size41to46 = sizes.some(size => size.sizeName === 'Talla 41-46');
 
     const handleBuyClick = () => {
         if (!selectedSize) {
@@ -56,14 +57,14 @@ function ProductInfo(props: InfoProductProps) {
                     <SelectValue placeholder="Selecciona una talla" />
                 </SelectTrigger>
                 <SelectContent>
-                <SelectGroup>
-                    {sizes.map((size: SizeType, index: number) => (
-                    <SelectItem key={index} value={size.sizeName}>
-                        {size.sizeName}
-                    </SelectItem>
-                    ))}
+                    <SelectGroup>
+                        <SelectItem value="Talla 36-40" disabled={!size36to40}>
+                            Talla 36-40
+                        </SelectItem>
+                        <SelectItem value="Talla 41-46" disabled={!size41to46}>
+                            Talla 41-46
+                        </SelectItem>
                     </SelectGroup>
-
                 </SelectContent>
             </Select>
             {errorMessage && (

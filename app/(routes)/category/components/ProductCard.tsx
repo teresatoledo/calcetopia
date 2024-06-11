@@ -28,11 +28,7 @@ function ProductCard(props: ProductCardProps) {
 
     return (
         <div className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px]">
-            {product.offer ? (
-                <div className="absolute bg-red-600 text-white rounded-lg -right-2 w-24 text-center rotate-45 top-6 z-20">
-                    Oferta
-                </div>
-            ) : null}
+            
             <Carousel
                 opts={{
                     align: 'start',
@@ -40,6 +36,11 @@ function ProductCard(props: ProductCardProps) {
                 className="w-full max-w-sm"
             >
                 <CarouselContent>
+                {product.offer ? (
+                <div className="absolute bg-red-600 text-white rounded-lg -right-4 w-24 text-center rotate-45 top-4">
+                Oferta
+            </div>
+            ) : null}
                     {images.length > 0 ? (
                         images.map((image, index) => (
                             <CarouselItem key={index} className="group">

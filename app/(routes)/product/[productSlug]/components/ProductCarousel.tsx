@@ -15,8 +15,6 @@ interface ProductCarouselProps {
 
 function ProductCarousel(props: ProductCarouselProps) {
     const { product } = props;
-    console.log('Product in Carousel:', product);
-
     const size36to40 = product.sizes.find(
         (size) => size.sizeSlug === 'talla-36-40'
     );

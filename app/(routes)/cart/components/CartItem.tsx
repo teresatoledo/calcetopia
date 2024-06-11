@@ -15,7 +15,6 @@ interface CartItemProps {
 
 function CartItem(props: CartItemProps) {
     const { product } = props;
-    console.log(product);
     const router = useRouter();
     const { removeItem, incrementItem, decrementItem } = useCart();
 

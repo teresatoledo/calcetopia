@@ -15,7 +15,9 @@ export type ProductType = {
   category: {
     slug: string,
     categoryName: string,
-  }
+    mainImage: string,
+  },
+  mainImage: string,
   sizes: SizeType[],
   categoryName: string;
 }

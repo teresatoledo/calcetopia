@@ -39,8 +39,8 @@ function FeaturedProducts() {
                         <Image 
                           src={`${image1}`} 
                           alt="Image featured" 
-                          width={200} 
-                          height={200} 
+                          width={300} 
+                          height={300} 
                         />
                         <div className={`absolute w-full px-6 transition duration-200 ${hovered === index ? 'opacity-100' : 'opacity-0'} bottom-5`}>
                           <div className="flex justify-center gap-x-4">

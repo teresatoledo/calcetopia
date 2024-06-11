@@ -26,10 +26,7 @@ function ProductCard(props: ProductCardProps) {
 
     return (
         <div className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px]">
-            <Link
-                href={`/product/${product.slug}`}
-                className="block"
-            >
+            
                 <Carousel opts={{ align: 'start' }} className="w-full">
                     <CarouselContent>
                         {product.offer ? (
@@ -74,6 +71,10 @@ function ProductCard(props: ProductCardProps) {
                         ))}
                     </CarouselContent>
                 </Carousel>
+                <Link
+                href={`/product/${product.slug}`}
+                className="block"
+            >
                 <p className="text-2xl text-center">
                     {product.productName}
                 </p>
