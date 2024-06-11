@@ -25,7 +25,7 @@ function ProductCard(props: ProductCardProps) {
     const images = [product.image1, product.image2].filter(Boolean);
 
     return (
-        <div className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px]">
+        <div className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px] mx-auto">
             
                 <Carousel opts={{ align: 'start' }} className="w-full">
                     <CarouselContent>

@@ -58,7 +58,7 @@ function CartItem(props: CartItemProps) {
                 <div>
                     <button
                         className={cn(
-                            'rounded-full flex items-center justify-center bg-white border shadow-md p-1 hover:scale-110 transition'
+                            'rounded-full flex items-center justify-center bg-white border shadow-md p-1 hover:scale-110 transition dark:bg-black'
                         )}
                         onClick={() =>
                             removeItem(product.id, product.selectedSize)

@@ -96,7 +96,7 @@ export default function Page() {
                     </ul>
                 </div>
                 <div className="max-w-xl">
-                    <div className="p-6 rounded-lg bg-slate-100">
+                    <div className="p-6 rounded-lg bg-slate-100 dark:bg-black">
                         <p className="mb-3 text-lg font-semibold">
                             Resumen del pedido
                         </p>
