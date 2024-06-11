@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { formatPrice } from '@/lib/formatPrice';
 import { useFavouriteProducts } from '@/hooks/useFavourites';
 import Image from 'next/image';
+import { formatOfferPrice } from '@/lib/offerPrice';
 
 type ProductCardProps = {
     product: ProductType;
@@ -26,10 +27,12 @@ function ProductCard(props: ProductCardProps) {
     const images = [product.image1, product.image2].filter(Boolean);
 
     return (
-        <Link
-            href={`/product/${product.slug}`}
-            className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md"
-        >
+        <div className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[300px]">
+            {product.offer ? (
+                <div className="absolute bg-red-600 text-white rounded-lg -right-2 w-24 text-center rotate-45 top-6 z-20">
+                    Oferta
+                </div>
+            ) : null}
             <Carousel
                 opts={{
                     align: 'start',
@@ -50,7 +53,9 @@ function ProductCard(props: ProductCardProps) {
                                 <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                     <div className="flex justify-center gap-x-4">
                                         <IconButton
-                                            onClick={() => router.push(`/product/${product.slug}`)}
+                                            onClick={() => {
+                                                router.push(`/product/${product.slug}`);
+                                            }}
                                             icon={
                                                 <Expand
                                                     size={20}
@@ -59,7 +64,9 @@ function ProductCard(props: ProductCardProps) {
                                             }
                                         />
                                         <IconButton
-                                            onClick={() => addFavourite(product)}
+                                            onClick={() => {
+                                                addFavourite(product);
+                                            }}
                                             icon={<Heart size={20} />}
                                             className="text-gray-600"
                                         />
@@ -72,13 +79,22 @@ function ProductCard(props: ProductCardProps) {
                     )}
                 </CarouselContent>
             </Carousel>
-            <p className="text-2xl text-center">
-                {product.productName}
-            </p>
-            <p className="font-bold text-center">
-                {formatPrice(product.price)}
-            </p>
-        </Link>
+            <Link href={`/product/${product.slug}`} className="block">
+                <p className="text-2xl text-center">{product.productName}</p>
+                {product.offer ? (
+                    <div className="flex justify-center gap-5">
+                        <p className="font-bold text-center">
+                            {formatOfferPrice(product.price)}
+                        </p>
+                        <p className="font-bold text-center text-red-600 line-through">
+                            {formatPrice(product.price)}
+                        </p>
+                    </div>
+                ) : (
+                    <p className="font-bold text-center">{formatPrice(product.price)}</p>
+                )}
+            </Link>
+        </div>
     );
 }
 
