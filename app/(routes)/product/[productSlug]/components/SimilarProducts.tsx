@@ -30,9 +30,8 @@ function SimilarProducts({ currentProduct }: SimilarProductsProps) {
     const productSlug = params?.productSlug as string;
 
     const { result, loading }: ResponseType = useGetSimilarProducts(productSlug);
-
-    const filteredResults = result
-        ? result.filter((product: ProductType) => product.slug !== productSlug)
+{/* @ts-ignore */}
+    const filteredResults = result ? result.filter((product: ProductType) => product.slug !== productSlug)
         : [];
 
     return (
@@ -41,8 +40,8 @@ function SimilarProducts({ currentProduct }: SimilarProductsProps) {
             <Carousel>
                 <CarouselContent className="-ml-2 md:-ml-4">
                     {loading && <SkeletonSchema grid={3} />}
-                    {filteredResults.length > 0 &&
-                        filteredResults.map((product: ProductType, index: number) => {
+                    {/* @ts-ignore */}
+                    {filteredResults.length > 0 && filteredResults.map((product: ProductType, index: number) => {
                             const { id, slug, image1, image2, productName } = product;
 
                             return (
