@@ -58,7 +58,7 @@ function ProductInfo(props: InfoProductProps) {
                 <SelectContent>
                 <SelectGroup>
                     {sizes.map((size: SizeType, index: number) => (
-                    <SelectItem key={index} value={size.sizeSlug}>
+                    <SelectItem key={index} value={size.sizeName}>
                         {size.sizeName}
                     </SelectItem>
                     ))}

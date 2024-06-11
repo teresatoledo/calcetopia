@@ -15,7 +15,7 @@ const ProductImage = (props: ProductImageProps) => {
             <Image
                 src={url}
                 alt="Product"
-                className="w-24 h-24 overflow-hidden rounded-md sm:w-auto sm:h-32" />
+                className="w-24 h-24 overflow-hidden rounded-md sm:w-auto sm:h-32" width={200} height={200}/>
         </div>
     );
 }

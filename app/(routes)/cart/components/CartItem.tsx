@@ -22,19 +22,19 @@ function CartItem(props: CartItemProps) {
     return (
         <li className="flex py-6 border-b">
             <ProductImage
-                slug={product.attributes.slug}
-                url={product.attributes.images.data[0].attributes.url}
+                slug={product.slug}
+                url={product.images[0]}
             />
             <div className="flex justify-between flex-1 px-6">
                 <div>
                     <h2 className="text-lg font-bold">
-                        {product.attributes.productName}
+                        {product.productName}
                     </h2>
                     <p>{product.selectedSize}</p>
                     <p className="font-bold">
-                        {!product.attributes.offer
-                            ? formatPrice(product.attributes.price)
-                            : formatOfferPrice(product.attributes.price)}
+                        {!product.offer
+                            ? formatPrice(product.price)
+                            : formatOfferPrice(product.price)}
                     </p>
                     <div className="flex items-center justify-between gap-3 mt-2 w-24">
                         <Button

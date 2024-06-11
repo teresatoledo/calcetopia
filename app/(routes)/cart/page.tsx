@@ -17,9 +17,9 @@ export default function Page() {
     const [discountStyle, setDiscountStyle] = useState('');
 
     const totalPrice = items.reduce((total, item) => {
-        const itemPrice = item.attributes.offer
-            ? item.attributes.price * 0.8 // Aplicar 20% de descuento
-            : item.attributes.price;
+        const itemPrice = item.offer
+            ? item.price * 0.8 // Aplicar 20% de descuento
+            : item.price;
         return total + itemPrice * item.quantity;
     }, 0);
 
@@ -86,20 +86,20 @@ export default function Page() {
                                 <div key={`${item.id}-${item.selectedSize}`}>
                                     <div className="flex justify-between">
                                         <p>
-                                            {item.attributes.productName} (
+                                            {item.productName} (
                                             {item.selectedSize})
                                         </p>
-                                        {!item.attributes.offer ? (
+                                        {!item.offer ? (
                                             <p>
                                                 {formatPrice(
-                                                    item.attributes.price *
+                                                    item.price *
                                                         item.quantity
                                                 )}
                                             </p>
                                         ) : (
                                             <p>
                                                 {formatOfferPrice(
-                                                    item.attributes.price *
+                                                    item.price *
                                                         item.quantity
                                                 )}
                                             </p>
