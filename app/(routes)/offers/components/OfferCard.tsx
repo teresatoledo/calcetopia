@@ -22,16 +22,14 @@ function OfferCard(props: ProductCardProps) {
     const router = useRouter();
     const { addFavourite } = useFavouriteProducts();
     const images = [product.image1, product.image2].filter(Boolean)
+
     return (
-        <Link
-            href={`/product/${product.slug}`}
-            className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md"
-        >
+        <div className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md max-w-[200px]"> {/* Aquí establecemos el ancho máximo */}
             <Carousel
                 opts={{
                     align: 'start',
                 }}
-                className="w-full max-w-sm"
+                className="w-full"
             >
                 <CarouselContent>
                     <div className="absolute bg-red-600 text-white rounded-lg -right-4 w-24 text-center rotate-45 top-4">
@@ -72,18 +70,23 @@ function OfferCard(props: ProductCardProps) {
                     ))}
                 </CarouselContent>
             </Carousel>
-            <p className="text-2xl text-center">
-                {product.productName}
-            </p>
-            <div className="flex justify-center gap-5">
-                <p className="font-bold text-center">
-                    {formatOfferPrice(product.price)}
+            <Link
+                href={`/product/${product.slug}`}
+                className="block"
+            >
+                <p className="text-2xl text-center">
+                    {product.productName}
                 </p>
-                <p className="font-bold text-center text-red-600 line-through">
-                    {formatPrice(product.price)}
-                </p>
-            </div>
-        </Link>
+                <div className="flex justify-center gap-5">
+                    <p className="font-bold text-center">
+                        {formatOfferPrice(product.price)}
+                    </p>
+                    <p className="font-bold text-center text-red-600 line-through">
+                        {formatPrice(product.price)}
+                    </p>
+                </div>
+            </Link>
+        </div>
     );
 }
 

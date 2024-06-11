@@ -5,7 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/formatPrice';
 import CartItem from './components/CartItem';
 import { loadStripe } from '@stripe/stripe-js';
-import { makePaymentRequest } from '@/api/payment';
+import { makePaymentRequest } from '@/pages/api/payment';
 import { useState } from 'react';
 import { formatOfferPrice } from '@/lib/offerPrice';
 
@@ -47,7 +47,7 @@ export default function Page() {
             const stripe = await stripePromise;
             const res = await makePaymentRequest.post('/api/orders', {
                 products: items,
-                discountCode, // Enviar discountCode al backend
+                discountCode,
             });
             await stripe?.redirectToCheckout({
                 sessionId: res.data.stripeSession.id,
