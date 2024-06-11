@@ -20,8 +20,8 @@ function Page() {
         {loading && (
           <SkeletonSchema grid={3} />
         )}
-        {result !== null && !loading && (
-          result.map((product: ProductType)=> (
+        {/* @ts-ignore */}
+        {result !== null && !loading && (result.map((product: ProductType)=> (
             <OfferCard key={product.id} product={product}/>
           ))
         )}

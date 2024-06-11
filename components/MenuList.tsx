@@ -32,6 +32,12 @@ const components: { title: string; href: string; description: string }[] = [
         description:
             'Una colección de calcetines estampados con tus comidas favoritas.',
     },
+    {
+        title: 'Todos',
+        href: '/allproducts',
+        description:
+            'Todos los productos en un solo lugar.',
+    },
 ];
 
 const MenuList = () => {

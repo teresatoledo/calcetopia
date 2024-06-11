@@ -1,7 +1,7 @@
-import { ProductType } from "./product";
+import { CategoryType } from "./category";
 
 export type ResponseType = {
-  loading: boolean;
-    result: ProductType[] | null;
+    loading: boolean;
+    result: Array<CategoryType> | null;
     error: string | null;
-}
+};
