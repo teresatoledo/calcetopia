@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { ProductType } from '@/types/product';
 
-export function useGetSimilarProducts() {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[isFeatured][$eq]=true&populate=*`;
-    const [result, setResult] = useState(null);
+export function useGetCategoryProduct(slug: string | string[]): { result: ProductType[] | null, loading: boolean, error: string } {
+    const url = `/api/categoryProducts?slug=${slug}`;
+    const [result, setResult] = useState<ProductType[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+
     useEffect(() => {
         (async () => {
             try {
@@ -13,10 +15,11 @@ export function useGetSimilarProducts() {
                 setResult(json.data);
                 setLoading(false);
             } catch (error: any) {
-                setError(error);
+                setError(error.toString());
                 setLoading(false);
             }
         })();
     }, [url]);
-    return { loading, result, error };
+
+    return { result, loading, error };
 }

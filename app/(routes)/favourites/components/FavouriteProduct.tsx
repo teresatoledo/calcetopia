@@ -17,30 +17,30 @@ function FavouriteProduct(props: FavouriteProductProps) {
     const { removeFavourite } = useFavouriteProducts();
 
     const seeDetail = () => {
-        router.push(`/product/${product.attributes.slug}`);
+        router.push(`/product/${product.slug}`);
     };
     return (
         <li className="flex p-6 border-b">
             <ProductImage
-                slug={product.attributes.slug}
-                url={product.attributes.images.data[0].attributes.url}
+                slug={product.slug}
+                url={product.image1}
             />
             <div className="flex justify-between flex-1 px-6">
                 <div>
                     <h3 className="text-lg font-bold">
-                        {product.attributes.productName}
+                        {product.productName}
                     </h3>
-                    {!product.attributes.offer ? (
+                    {!product.offer ? (
                         <p className="font-bold text-center flex justify-start pl-2">
-                            {formatPrice(product.attributes.price)}
+                            {formatPrice(product.price)}
                         </p>
                     ) : (
                         <div className="flex justify-center gap-5">
                             <p className="font-bold text-center">
-                                {formatOfferPrice(product.attributes.price)}
+                                {formatOfferPrice(product.price)}
                             </p>
                             <p className="font-bold text-center text-red-600 line-through">
-                                {formatPrice(product.attributes.price)}
+                                {formatPrice(product.price)}
                             </p>
                         </div>
                     )}

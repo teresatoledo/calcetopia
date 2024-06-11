@@ -10,18 +10,29 @@ export type ProductType = {
   soldOut: boolean,
   image1: string,
   image2: string,
+  images: [image1: string, image2: string]
   categoryId: number,
   category: {
     slug: string,
     categoryName: string,
-  },
-  sizes: {
-    find(arg0: (size: { slug: string }) => boolean): unknown,
-    slug: string,
-    sizeName: string
-  }[]
+  }
+  sizes: SizeType[],
+  categoryName: string;
 }
+export type SizeType = {
+  id: number;
+  sizeName: string;
+  sizeSlug: string;
+};
 
+export type ProductWithSizesType = ProductType & {
+  sizes: SizeType[];
+};
+
+export type ResponseType = {
+  result: ProductWithSizesType[];
+  loading: boolean;
+};
 export type ProductWithSizeType = ProductType & {
   selectedSize?: string;
 };

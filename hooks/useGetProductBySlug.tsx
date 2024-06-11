@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react';
 
-export function useGetProductField() {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/content-type-builder/content-types/api::product.product`;
+export function useGetProductBySlug(slug: string) {
+    const url = `/api/product?slug=${slug}`;
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         (async () => {
             try {
                 const res = await fetch(url);
                 const json = await res.json();
-                setResult(json.data);
+                if (res.ok) {
+                    setResult(json.data);
+                } else {
+                    setError(json.error);
+                }
                 setLoading(false);
             } catch (error: any) {
-                setError(error);
+                console.error('Failed to fetch product:', error);
+                setError(error.message);
                 setLoading(false);
             }
         })();

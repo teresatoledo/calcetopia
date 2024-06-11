@@ -21,9 +21,10 @@ function OfferCard(props: ProductCardProps) {
     const { product } = props;
     const router = useRouter();
     const { addFavourite } = useFavouriteProducts();
+    const images = [product.image1, product.image2].filter(Boolean)
     return (
         <Link
-            href={`/product/${product.attributes.slug}`}
+            href={`/product/${product.slug}`}
             className="relative mx-auto p-2 transition-all duration-100 rounded-lg hover:shadow-md"
         >
             <Carousel
@@ -36,19 +37,21 @@ function OfferCard(props: ProductCardProps) {
                     <div className="absolute bg-red-600 text-white rounded-lg -right-4 w-24 text-center rotate-45 top-4">
                         Oferta
                     </div>
-                    {product.attributes.images.data.map((image) => (
-                        <CarouselItem key={image.id} className="group">
+                    {images.map((image) => (
+                        <CarouselItem key={product.id} className="group">
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.attributes.url}`}
+                                src={image}
                                 alt="Image"
                                 className="rounded-xl"
+                                width={200}
+                                height={200}
                             />
                             <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                 <div className="flex justify-center gap-x-4">
                                     <IconButton
                                         onClick={() =>
                                             router.push(
-                                                `/product/${product.attributes.slug}`
+                                                `/product/${product.slug}`
                                             )
                                         }
                                         icon={
@@ -70,14 +73,14 @@ function OfferCard(props: ProductCardProps) {
                 </CarouselContent>
             </Carousel>
             <p className="text-2xl text-center">
-                {product.attributes.productName}
+                {product.productName}
             </p>
             <div className="flex justify-center gap-5">
                 <p className="font-bold text-center">
-                    {formatOfferPrice(product.attributes.price)}
+                    {formatOfferPrice(product.price)}
                 </p>
                 <p className="font-bold text-center text-red-600 line-through">
-                    {formatPrice(product.attributes.price)}
+                    {formatPrice(product.price)}
                 </p>
             </div>
         </Link>

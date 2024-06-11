@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { useGetAllProducts } from '@/api/getAllProducts';
+import { useGetAllProducts } from '@/hooks/useGetAllProducts';
 import SkeletonSchema from '@/components/SkeletonSchema';
 import { Separator } from '@/components/ui/separator';
 import { ProductType } from '@/types/product';

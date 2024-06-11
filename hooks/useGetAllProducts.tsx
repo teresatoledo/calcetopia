@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useGetAllProducts(){
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*`
+  const url = `/api/allProducts`
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('')

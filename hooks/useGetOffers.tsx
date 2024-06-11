@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export function useGetOffers() {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[offer][$eq]=true&populate=*`;
+    const url = `/api/offers`;
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');

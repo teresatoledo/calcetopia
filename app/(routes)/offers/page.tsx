@@ -1,5 +1,5 @@
 "use client"
-import { useGetOffers } from "@/api/getOffers"
+import { useGetOffers } from "@/hooks/useGetOffers"
 import SkeletonSchema from "@/components/SkeletonSchema";
 import { Separator } from "@/components/ui/separator";
 import { ProductType } from "@/types/product";
