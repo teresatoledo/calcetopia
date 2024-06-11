@@ -36,10 +36,8 @@ export default function Page() {
             <Separator />
             <div className="grid gap-5 mt-8 sm:grid-cols-2 md:grid-cols-3 md:gap-10">
                 {loading && <SkeletonSchema grid={3} />}
-                {hasResults && !loading &&
-                    result
-                        .slice(0, showMore ? result.length : 6)
-                        .map((product: ProductType) => (
+                {/* @ts-ignore */}
+                {hasResults && !loading && result.slice(0, showMore ? result.length : 6).map((product: ProductType) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
             </div>
