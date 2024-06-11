@@ -8,7 +8,6 @@ import { Expand, Heart } from "lucide-react";
 import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
 import { useGetFeaturedProducts } from "@/hooks/useGetFeaturedProducts";
-import { useCart } from "@/hooks/useCart";
 import { useState } from "react";
 import { useFavouriteProducts } from "@/hooks/useFavourites";
 import { formatPrice } from "@/lib/formatPrice";
@@ -40,8 +39,8 @@ function FeaturedProducts() {
                         <Image 
                           src={`${image1}`} 
                           alt="Image featured" 
-                          width={200} // Ajusta el ancho según sea necesario
-                          height={200} // Ajusta la altura según sea necesario
+                          width={200} 
+                          height={200} 
                         />
                         <div className={`absolute w-full px-6 transition duration-200 ${hovered === index ? 'opacity-100' : 'opacity-0'} bottom-5`}>
                           <div className="flex justify-center gap-x-4">

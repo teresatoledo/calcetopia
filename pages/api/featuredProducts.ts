@@ -10,7 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       WHERE isFeatured = true
     `;
     const [results] = await db.execute(query);
-    console.log('Query results:', results);
     db.end();
     res.status(200).json({ data: results });
   } catch (error: any) {
