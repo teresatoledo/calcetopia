@@ -27,8 +27,8 @@ function FeaturedProducts() {
           {loading && (
             <SkeletonSchema grid={3} />
           )}
-          {result && result.length > 0 && (
-            result.map((product: ProductType, index: number) => {
+          {/* @ts-ignore */}
+          {result && result.length > 0 && (result.map((product: ProductType, index: number) => {
               const { id, productName, slug, price, description, image1 } = product;
 
               return (
